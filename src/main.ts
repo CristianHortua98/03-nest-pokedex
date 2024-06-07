@@ -10,10 +10,15 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe(
     {
       whitelist: true,
-      forbidNonWhitelisted: true
+      forbidNonWhitelisted: true,
+      transform: true, //TRANSFORMA EL QUERY PARAMETER AL TIPO QUE SE DEFINIO EN EL DTO
+      transformOptions: {
+        enableImplicitConversion: true
+      }
     }
   ))
 
-  await app.listen(3000);
+  // await app.listen(3000);
+  await app.listen(process.env.PORT);
 }
 bootstrap();
